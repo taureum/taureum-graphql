@@ -1,0 +1,10 @@
+type ERC721Mint @entity {
+  id: ID!
+  from: Bytes!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  to: Bytes!
+  tokenId: BigInt!
+  uri: String!
+  expiryBlock: BigInt!# string
+}
