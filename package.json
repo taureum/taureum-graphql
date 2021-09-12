@@ -1,21 +1,14 @@
 {
-    "name": "taureum-graph",
-    "license": "UNLICENSED",
-    "scripts": {
-        "codegen": "graph codegen --output-dir src/types/",
-        "build": "graph build",
-        "create-local": "graph create --node http://localhost:8020/ taureum/nft",
-        "remove-local": "graph remove --node http://localhost:8020/ taureum/nft",
-        "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 taureum/nft",
-        "create-test": "graph create --node http://172.105.112.221:8020/ taureum/nft",
-        "remove-test": "graph remove --node http://172.105.112.221:8020/ taureum/nft",
-        "deploy-test": "graph deploy --node http://172.105.112.221:8020/ --ipfs http://172.105.112.221:5001 taureum/nft"
-    },
-    "dependencies": {
-        "@graphprotocol/graph-cli": "^0.21.0",
-        "@graphprotocol/graph-ts": "^0.20.1"
-    },
-    "devDependencies": {
-        "nodemon": "^2.0.2"
-    }
+  "name": "orbitau-market",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy:kovan": "graph deploy hoangthaihuy/orbitau-market-kovan subgraph.kovan.yaml --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/",
+    "deploy:mainnet": "graph deploy hoangthaihuy/orbitau-market subgraph.yaml --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.21.1",
+    "@graphprotocol/graph-ts": "0.20.0"
+  }
 }

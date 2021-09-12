@@ -1,6 +1,6 @@
 specVersion: 0.0.2
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum/contract
     name: OrbitauERC721LazyMint
@@ -13,12 +13,12 @@ dataSources:
       kind: ethereum/events
       apiVersion: 0.0.4
       language: wasm/assemblyscript
-      entities: 
+      entities:
         - Token
         - Owner
       abis:
         - name: OrbitauERC721LazyMint
-          file: ./abis/OrbitauERC721LazyMint.json
+          file: OrbitauERC721LazyMint/abis/OrbitauERC721LazyMint.json
       eventHandlers:
         - event: Approval(indexed address,indexed address,indexed uint256)
           handler: handleApproval
@@ -34,4 +34,4 @@ dataSources:
           handler: handleTransfer
         - event: Unpaused(address)
           handler: handleUnpaused
-      file: ./src/mappings/orbitauERC721LazyMint.ts
+      file: OrbitauERC721LazyMint/OrbitauERC721LazyMint.wasm

@@ -12,7 +12,7 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
-export class ERC721Mint extends Entity {
+export class Token extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -20,17 +20,17 @@ export class ERC721Mint extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id !== null, "Cannot save ERC721Mint entity without an ID");
+    assert(id !== null, "Cannot save Token entity without an ID");
     assert(
       id.kind == ValueKind.STRING,
-      "Cannot save ERC721Mint entity with non-string ID. " +
-        'Considering using .toHex() to convert the "id" to a string.'
+      "Cannot save Token entity with non-string ID. " +
+      'Considering using .toHex() to convert the "id" to a string.'
     );
-    store.set("ERC721Mint", id.toString(), this);
+    store.set("Token", id.toString(), this);
   }
 
-  static load(id: string): ERC721Mint | null {
-    return store.get("ERC721Mint", id) as ERC721Mint | null;
+  static load(id: string): Token | null {
+    return store.get("Token", id) as Token | null;
   }
 
   get id(): string {
@@ -42,42 +42,6 @@ export class ERC721Mint extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get from(): Bytes {
-    let value = this.get("from");
-    return value.toBytes();
-  }
-
-  set from(value: Bytes) {
-    this.set("from", Value.fromBytes(value));
-  }
-
-  get timestamp(): BigInt {
-    let value = this.get("timestamp");
-    return value.toBigInt();
-  }
-
-  set timestamp(value: BigInt) {
-    this.set("timestamp", Value.fromBigInt(value));
-  }
-
-  get blockNumber(): BigInt {
-    let value = this.get("blockNumber");
-    return value.toBigInt();
-  }
-
-  set blockNumber(value: BigInt) {
-    this.set("blockNumber", Value.fromBigInt(value));
-  }
-
-  get to(): Bytes {
-    let value = this.get("to");
-    return value.toBytes();
-  }
-
-  set to(value: Bytes) {
-    this.set("to", Value.fromBytes(value));
-  }
-
   get tokenId(): BigInt {
     let value = this.get("tokenId");
     return value.toBigInt();
@@ -87,21 +51,61 @@ export class ERC721Mint extends Entity {
     this.set("tokenId", Value.fromBigInt(value));
   }
 
-  get uri(): string {
-    let value = this.get("uri");
+  get address(): Bytes {
+    let value = this.get("address");
+    return value.toBytes();
+  }
+
+  set address(value: Bytes) {
+    this.set("address", Value.fromBytes(value));
+  }
+}
+
+export class Owner extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save Owner entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save Owner entity with non-string ID. " +
+      'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("Owner", id.toString(), this);
+  }
+
+  static load(id: string): Owner | null {
+    return store.get("Owner", id) as Owner | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
     return value.toString();
   }
 
-  set uri(value: string) {
-    this.set("uri", Value.fromString(value));
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
   }
 
-  get expiryBlock(): BigInt {
-    let value = this.get("expiryBlock");
+  get address(): Bytes {
+    let value = this.get("address");
+    return value.toBytes();
+  }
+
+  set address(value: Bytes) {
+    this.set("address", Value.fromBytes(value));
+  }
+
+  get count(): BigInt {
+    let value = this.get("count");
     return value.toBigInt();
   }
 
-  set expiryBlock(value: BigInt) {
-    this.set("expiryBlock", Value.fromBigInt(value));
+  set count(value: BigInt) {
+    this.set("count", Value.fromBigInt(value));
   }
 }
