@@ -1,0 +1,14 @@
+{
+  "name": "orbitau-market",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen --output-dir src/types/",
+    "build": "graph build",
+    "deploy:kovan": "graph deploy --access-token 5c02a708d3a14251848068f535bf2cb1 hoangthaihuy/orbitau-market-kovan subgraph.kovan.yaml --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/",
+    "deploy:mainnet": "graph deploy hoangthaihuy/orbitau-market subgraph.yaml --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.21.1",
+    "@graphprotocol/graph-ts": "0.20.0"
+  }
+}
