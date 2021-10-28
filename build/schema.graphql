@@ -9,3 +9,34 @@ type Owner @entity {
   address: Bytes!
   count: BigInt!
 } 
+
+type History @entity {
+  id: ID!
+  txHash: Bytes!
+  tokenId: BigInt!
+  tokenIdHex: String!
+  fromAddress: Bytes!
+  toAddress: Bytes!
+  blockNumber: BigInt!
+  blockTime: BigInt!
+} 
+
+type TotalTransaction @entity {
+  id: ID!
+  tokenId: BigInt!
+  tokenIdHex: String!
+  count: BigInt!
+} 
+
+type OrderHistory @entity {
+  id: ID!
+  txHash: Bytes! 
+  buyHash: Bytes!
+  sellHash: Bytes!
+  maker: Bytes!
+  taker: Bytes!
+  price: BigInt!
+  metadata: Bytes!
+  blockNumber: BigInt!
+  blockTime: BigInt!
+} 

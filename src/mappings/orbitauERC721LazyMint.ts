@@ -9,7 +9,7 @@ import {
   Transfer,
   Unpaused
 } from "../types/OrbitauERC721LazyMint/OrbitauERC721LazyMint"
-import { Token, Owner } from "../types/schema"
+import { Token, Owner, History, TotalTransaction } from "../types/schema"
 
 export function handleTransfer(event: Transfer): void {
   let id = event.params.tokenId.toHex();
@@ -44,7 +44,9 @@ export function handleTransfer(event: Transfer): void {
   else {
     to.count = to.count.plus(BigInt.fromI32(1));
   }
-  to.save()
+  to.save();
+
+  _syncHistory(event);
 }
 
 export function handleApprovalForAll(event: ApprovalForAll): void { }
@@ -112,4 +114,33 @@ export function handleApproval(event: Approval): void {
   // - contract.tokenType(...)
   // - contract.tokenURI(...)
   // - contract.totalSupply(...)
+}
+
+function _syncHistory(event: Transfer): void {
+  let id = crypto.keccak256(event.transaction.hash).toHex();
+  let history = History.load(id)
+  if (history == null) {
+    history = new History(id);
+    history.blockNumber = event.block.number;
+    history.blockTime = event.block.timestamp;
+    history.txHash = event.transaction.hash;
+    history.tokenId = event.params.tokenId;
+    history.tokenIdHex = event.params.tokenId.toHexString();
+    history.fromAddress = event.params.from;
+    history.toAddress = event.params.to;
+    history.save();
+  }
+
+  let totalId = event.params.tokenId.toHexString();
+  let total = TotalTransaction.load(totalId);
+  if (total == null) {
+    total = new TotalTransaction(totalId);
+    total.tokenId = event.params.tokenId;
+    total.tokenIdHex = event.params.tokenId.toHexString();
+    total.count = BigInt.fromI32(1);
+  }
+  else {
+    total.count = total.count.plus(BigInt.fromI32(1));
+  }
+  total.save();
 }

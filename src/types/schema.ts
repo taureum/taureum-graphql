@@ -109,3 +109,267 @@ export class Owner extends Entity {
     this.set("count", Value.fromBigInt(value));
   }
 }
+
+export class History extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save History entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save History entity with non-string ID. " +
+      'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("History", id.toString(), this);
+  }
+
+  static load(id: string): History | null {
+    return store.get("History", id) as History | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get txHash(): Bytes {
+    let value = this.get("txHash");
+    return value.toBytes();
+  }
+
+  set txHash(value: Bytes) {
+    this.set("txHash", Value.fromBytes(value));
+  }
+
+  get tokenId(): BigInt {
+    let value = this.get("tokenId");
+    return value.toBigInt();
+  }
+
+  set tokenId(value: BigInt) {
+    this.set("tokenId", Value.fromBigInt(value));
+  }
+
+  get tokenIdHex(): string {
+    let value = this.get("tokenIdHex");
+    return value.toString();
+  }
+
+  set tokenIdHex(value: string) {
+    this.set("tokenIdHex", Value.fromString(value));
+  }
+
+  get fromAddress(): Bytes {
+    let value = this.get("fromAddress");
+    return value.toBytes();
+  }
+
+  set fromAddress(value: Bytes) {
+    this.set("fromAddress", Value.fromBytes(value));
+  }
+
+  get toAddress(): Bytes {
+    let value = this.get("toAddress");
+    return value.toBytes();
+  }
+
+  set toAddress(value: Bytes) {
+    this.set("toAddress", Value.fromBytes(value));
+  }
+
+  get blockNumber(): BigInt {
+    let value = this.get("blockNumber");
+    return value.toBigInt();
+  }
+
+  set blockNumber(value: BigInt) {
+    this.set("blockNumber", Value.fromBigInt(value));
+  }
+
+  get blockTime(): BigInt {
+    let value = this.get("blockTime");
+    return value.toBigInt();
+  }
+
+  set blockTime(value: BigInt) {
+    this.set("blockTime", Value.fromBigInt(value));
+  }
+}
+
+export class TotalTransaction extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save TotalTransaction entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save TotalTransaction entity with non-string ID. " +
+      'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("TotalTransaction", id.toString(), this);
+  }
+
+  static load(id: string): TotalTransaction | null {
+    return store.get("TotalTransaction", id) as TotalTransaction | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get tokenId(): BigInt {
+    let value = this.get("tokenId");
+    return value.toBigInt();
+  }
+
+  set tokenId(value: BigInt) {
+    this.set("tokenId", Value.fromBigInt(value));
+  }
+
+  get tokenIdHex(): string {
+    let value = this.get("tokenIdHex");
+    return value.toString();
+  }
+
+  set tokenIdHex(value: string) {
+    this.set("tokenIdHex", Value.fromString(value));
+  }
+
+  get count(): BigInt {
+    let value = this.get("count");
+    return value.toBigInt();
+  }
+
+  set count(value: BigInt) {
+    this.set("count", Value.fromBigInt(value));
+  }
+}
+
+export class OrderHistory extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save OrderHistory entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save OrderHistory entity with non-string ID. " +
+      'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("OrderHistory", id.toString(), this);
+  }
+
+  static load(id: string): OrderHistory | null {
+    return store.get("OrderHistory", id) as OrderHistory | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get txHash(): Bytes {
+    let value = this.get("txHash");
+    return value.toBytes();
+  }
+
+  set txHash(value: Bytes) {
+    this.set("txHash", Value.fromBytes(value));
+  }
+
+  get buyHash(): Bytes {
+    let value = this.get("buyHash");
+    return value.toBytes();
+  }
+
+  set buyHash(value: Bytes) {
+    this.set("buyHash", Value.fromBytes(value));
+  }
+
+  get sellHash(): Bytes {
+    let value = this.get("sellHash");
+    return value.toBytes();
+  }
+
+  set sellHash(value: Bytes) {
+    this.set("sellHash", Value.fromBytes(value));
+  }
+
+  get maker(): Bytes {
+    let value = this.get("maker");
+    return value.toBytes();
+  }
+
+  set maker(value: Bytes) {
+    this.set("maker", Value.fromBytes(value));
+  }
+
+  get taker(): Bytes {
+    let value = this.get("taker");
+    return value.toBytes();
+  }
+
+  set taker(value: Bytes) {
+    this.set("taker", Value.fromBytes(value));
+  }
+
+  get price(): BigInt {
+    let value = this.get("price");
+    return value.toBigInt();
+  }
+
+  set price(value: BigInt) {
+    this.set("price", Value.fromBigInt(value));
+  }
+
+  get metadata(): Bytes {
+    let value = this.get("metadata");
+    return value.toBytes();
+  }
+
+  set metadata(value: Bytes) {
+    this.set("metadata", Value.fromBytes(value));
+  }
+
+  get blockNumber(): BigInt {
+    let value = this.get("blockNumber");
+    return value.toBigInt();
+  }
+
+  set blockNumber(value: BigInt) {
+    this.set("blockNumber", Value.fromBigInt(value));
+  }
+
+  get blockTime(): BigInt {
+    let value = this.get("blockTime");
+    return value.toBigInt();
+  }
+
+  set blockTime(value: BigInt) {
+    this.set("blockTime", Value.fromBigInt(value));
+  }
+}
